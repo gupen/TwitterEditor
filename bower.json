@@ -1,0 +1,19 @@
+{
+  "name": "Y",
+  "description": "Y",
+  "main": "Y",
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "marked": "~0.3.5"
+  }
+}

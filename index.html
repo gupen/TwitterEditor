@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Twitter Editor</title>
+    <script>
+  window.$ = window.jQuery = require("./jquery-2.1.4.js"); // Load jQuery.
+</script>
+<script src="js/bootstrap.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<script src="js/oauth.js"></script>
+<script src="js/twitter_key.js"></script>
+<script src="js/onload_script.js"></script>
+<script type="text/javascript" src="js/post.js"></script>
+<script type="text/javascript" src="js/get.js"></script>
+
+
+
+
+
+
+
+</head>
+<body　data-spy="scroll"
+  data-target=".sidebar">
+
+
+    <div class="row">
+      <div class="col-sm-12">
+          <h1 id="header">TwitterEditor</h1>
+          <div class="row">
+          <div class="col-sm-6">
+          <form name="EditFileName">
+              <div class="input-group">
+                  <input type="text" name="EditFileName" class="form-control" placeholder="Filename" aria-describedby="sizing-addon2">
+                  <span class="input-group-addon" id="sizing-addon2">.txt</span>
+              </div>
+            </form>
+            <form name="fm">
+                    <div class="form-group">
+                        <textarea input type="text" name="tweetText" class="form-control"　id="tweetbox" rows="5" placeholder="しんちょくありますか？" onkeyup="CountString(value);"></textarea>
+                        <p id="CountString" class="pull-right">0/140文字</p><br>
+                    </div>
+            </form>
+
+                    <button type="button" class="btn btn-info" id="ViewEditorButton">進捗を見る</button>
+                    <button type="button" class="btn btn-info" id="ExportEditorButton">進捗を吐き出す</button>
+                <p class="editor">ここに進捗が増えていくかもしれない</p>
+            </div>
+              <div class="col-sm-6">
+
+                    <button type="button" class="btn btn-info" id="TweetButton">Tweet</button>
+                    <button type="button" class="btn btn-info" id="TwitterEditorButton">Edit</button>
+                    <button type="button" class="btn btn-info" id="ViewTLButton">TL</button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info" id="ViewListTLButton">List TL</button>
+                    </div>
+
+                    <select id="ListOverview" name="user_list">
+
+
+                    </select>
+                    <input type="checkbox" id="check1" name="check1" value="1"><label for="check1">AutoTL</label>
+                    <button type="button" class="btn btn-info" id="RegisterButton">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                    </button>
+
+                <div>
+
+                    <p class="tweet" >ここにTLが流れてくるかもしれない</p>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>
