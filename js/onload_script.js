@@ -21,7 +21,7 @@ var client;
 var Firebase =require("firebase");
 
 var dataStore = new Firebase('FirebaseのURLをここに書く');
-
+//var dataStore = new Firebase('https://rinattertest.firebaseio.com/');
 
 
 $(function(){

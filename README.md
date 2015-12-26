@@ -2,6 +2,7 @@ TwitterEditor
 ====
 
 Twitterっぽく進捗を生み出す
+[イメージgif]:https://drive.google.com/file/d/0B46aslgPvqVCMHdtbk9HaEFTNUE/view?usp=sharing "イメージgif"
 
 ##概要
 Electron+Firebase作られたTwitter感覚でガンガン進捗を生み出すエディターです．
