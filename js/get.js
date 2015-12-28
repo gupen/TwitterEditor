@@ -75,17 +75,19 @@ $('#check1').change(function(){
 var target = $("#ListOverview");
 target.change(function(){
     if($("#ListOverview option:selected").attr("value") != "") {
-        //console.log($("#list3 option:selected").attr("value"));
         selected_list=$('select[name="user_list"]').val();
-        //console.log(selected_list);
-
+        var fs = require('fs');
+        var text=fs.readFileSync('User.txt', 'utf-8');
+        Local_User_Data=text.split("\n");
+        text=Local_User_Data[0]+"\n"+Local_User_Data[1]+"\n"+Local_User_Data[2]+"\n"+selected_list+"\n";
+        fs.writeFile('User.txt', text);
     }
 });
 
 
 });
 
-
+//TLを削除する
 function Delete_Timeline(){
     $("div#TL").remove();
 }

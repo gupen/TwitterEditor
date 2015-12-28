@@ -20,8 +20,6 @@ var client;
 
 
 var Firebase =require("firebase");
-//var dataStore = new Firebase('');
-//var dataStore = new Firebase('https://rinattertest.firebaseio.com/');
 
 
 $(function(){
@@ -42,6 +40,7 @@ $(function(){
 			login_userID=Local_User_Data[0];
 			login_userIcon=Local_User_Data[1];
 			login_userName=Local_User_Data[2];
+			selected_list=Local_User_Data[3];
 			console.log("UserDataFile found");
 			console.log(login_userID,login_userIcon,login_userName);
 
@@ -61,7 +60,7 @@ $(function(){
 							console.log("userName is",login_userName);
 							console.log("icon is",login_userIcon);
 							var fs = require('fs');
-							var text = login_userID+"\n" +login_userIcon+"\n"+login_userName+"\n";
+							var text = login_userID+"\n"+login_userIcon+"\n"+login_userName+"\n";
 							fs.writeFile('User.txt', text);
 						});
 			},1000);
