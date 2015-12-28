@@ -10,8 +10,9 @@ var authUrl = "https://api.twitter.com/oauth/authenticate?oauth_token=";
 var user_oauth_access_token;
 var user_oauth_access_token_secret;
 
-var consumerkey="ここにConsumerKeyを書く";
-var consumersecret="ここにConsumerSecretKeyを書く";
+//var consumerkey="ここにConsumerKeyを書く";
+//var consumersecret="ここにConsumerSecretKeyを書く";
+
 
 var oauth = new OAuth(
 	'https://api.twitter.com/oauth/request_token',

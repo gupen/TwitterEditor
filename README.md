@@ -10,8 +10,12 @@ filenameを記入し，Twitterっぽく執筆(Editボタン or Shift+Enter)し�
 作った進捗はtxtでダウンロードできます．  
 
 ##使う前に
-oauth.js:19と20行目にconsumerkeyとconsumersecretkeyを入れてください．  
-onload_script.js:23行目にFirebaseのURLを入れてください(取得するのがめんどくさい人は１行下のテスト用の物を使ってください)．  
+UserSetting_tmp.js:consumerkeyとconsumersecretkey，そしてFirebaseのURLを入れてください.
+本当はUserSetting.jsを参照しているので，ファイル名をUserSetting_tmp.jsからUserSetting.jsに変更してください．
+初回起動時はTwitterの認証に飛ばされます．認証後，TwitterEditorページをリロードしてください．
+
+##起動方法
+cloneした先でターミナルに「electron .」で起動します．  
 
 
 ##ボタンの説明

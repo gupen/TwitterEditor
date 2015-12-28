@@ -18,9 +18,9 @@ var EditFileName;
 
 var client;
 
-var Firebase =require("firebase");
 
-var dataStore = new Firebase('FirebaseのURLをここに書く');
+var Firebase =require("firebase");
+//var dataStore = new Firebase('');
 //var dataStore = new Firebase('https://rinattertest.firebaseio.com/');
 
 
@@ -33,25 +33,38 @@ $(function(){
 		//15回/15分の制限あり
 		//ローカルをまずはじめに見てなければ取りに行く感じで
 		var fs = require('fs');
+		//ローカルファイルを参照する処理．エラーがあればcatchして作成処理へ
 		try{
-			console.log("UserDataFile found");
+
 			var text = fs.readFileSync('User.txt', 'utf-8');
 			var Local_User_Data=new Array();
 			Local_User_Data=text.split("\n");
 			login_userID=Local_User_Data[0];
 			login_userIcon=Local_User_Data[1];
+			login_userName=Local_User_Data[2];
+			console.log("UserDataFile found");
+			console.log(login_userID,login_userIcon,login_userName);
 
-
-		}catch(err){
-			console.log("file not found→now Watch LocalUserData")
+		}
+		//ローカルファイルを作成する処理
+		//ここにlogin_userIDの取得→login_userNameとlogin_userIconの取得の流れを書く
+		catch(err){
+			console.log("UserDataFile not found. Now create UserDataFile.")
 			client.get('account/settings', function(error, setting, response) {
 	            login_userID=setting.screen_name;
 	            console.log(login_userID);
-							var fs = require('fs');
-							var text = login_userID+"\n";
-							fs.writeFile('User.txt', text);
 	        });
-
+			setTimeout(function(){
+				client.get('users/show.json',{screen_name:login_userID},function(error,value,response){
+							login_userName=value.name;
+							login_userIcon=value.profile_image_url;
+							console.log("userName is",login_userName);
+							console.log("icon is",login_userIcon);
+							var fs = require('fs');
+							var text = login_userID+"\n" +login_userIcon+"\n"+login_userName+"\n";
+							fs.writeFile('User.txt', text);
+						});
+			},1000);
 		}
 
 
@@ -68,31 +81,6 @@ $(function(){
 
 
 });
-
-
-
-
-
-
-
-
-
-
-	setTimeout(function(){
-
-		client.get('users/show.json',{screen_name:login_userID},function(error,value,response){
-			login_userName=value.name;
-			login_userIcon=value.profile_image_url;
-			console.log("icon is",login_userIcon);
-			var fs = require('fs');
-			var text = login_userID+"\n" +login_userIcon+"\n";
-			fs.writeFile('User.txt', text);
-		});
-
-
-	},1000);
-
-
 
 
 
