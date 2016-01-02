@@ -8,7 +8,7 @@ var json_list;
 var selected_list=0;
 
 var login_userName;
-var login_userIcon=0;
+var login_userIcon;
 var login_userID;
 
 //ツイートボックスの文字数

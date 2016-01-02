@@ -22,10 +22,9 @@ $(function(){
     //リストを表示する
     var ViewListTLButton = $('#ViewListTLButton');
     ViewListTLButton.click(function(){
-        //console.log(selected_list);
-        //typeof selected_list[0];
+
         var list_id=json_list[selected_list].id;
-        //console.log(list_id);
+
         which_TL=String(selected_list);
         console.log(which_TL);
         client.get('lists/statuses', {list_id : list_id}, function(error, tweets, response) {
@@ -98,7 +97,7 @@ function Delete_Timeline(){
 function view_Timeline(tweet_json){
     Delete_Timeline();
     for(var i=0;i<tweet_json.length;i++){
-        $("p.tweet").after("<div class=\"alert alert-info\" id='TL'><button class=\"close\" data-dismiss=\"alert\">&times;</button>"+"<img id=\"icon\" src="+tweet_json[i].user.profile_image_url+">"+tweet_json[i].user.name+":"+tweet_json[i].text+"</div>");
+        $("p.tweet").before("<div class=\"alert alert-info\" id='TL'><button class=\"close\" data-dismiss=\"alert\">&times;</button>"+"<img id=\"icon\" src="+tweet_json[i].user.profile_image_url+">"+tweet_json[i].user.name+":"+tweet_json[i].text+"</div>");
         $('#icon').height(30).width(30);
     }
 
