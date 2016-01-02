@@ -34,12 +34,17 @@ $(function(){
 		//ローカルファイルを参照する処理．エラーがあればcatchして作成処理へ
 		try{
 
-			var text = fs.readFileSync('User.txt', 'utf-8');
-			var Local_User_Data=new Array();
-			Local_User_Data=text.split("\n");
+			var Local_User_Data=SplitUsertxt();
 			login_userID=Local_User_Data[0];
-			login_userIcon=Local_User_Data[1];
-			login_userName=Local_User_Data[2];
+
+			if(Local_User_Data[1]=="undefined") {
+				console.log("login_userName and login_userIcon are undefined");
+					Get_UserName_UserIcon();
+			}else{
+					login_userIcon=Local_User_Data[1];
+					login_userName=Local_User_Data[2];
+			}
+
 			selected_list=Local_User_Data[3];
 			console.log("UserDataFile found");
 			console.log(login_userID,login_userIcon,login_userName);
@@ -48,22 +53,15 @@ $(function(){
 		//ローカルファイルを作成する処理
 		//ここにlogin_userIDの取得→login_userNameとlogin_userIconの取得の流れを書く
 		catch(err){
+
 			console.log("UserDataFile not found. Now create UserDataFile.")
-			client.get('account/settings', function(error, setting, response) {
-	            login_userID=setting.screen_name;
-	            console.log(login_userID);
-	        });
+			GetUserIDfrom_accountsettings();
 			setTimeout(function(){
-				client.get('users/show.json',{screen_name:login_userID},function(error,value,response){
-							login_userName=value.name;
-							login_userIcon=value.profile_image_url;
-							console.log("userName is",login_userName);
-							console.log("icon is",login_userIcon);
-							var fs = require('fs');
-							var text = login_userID+"\n"+login_userIcon+"\n"+login_userName+"\n";
-							fs.writeFile('User.txt', text);
-						});
+				Get_UserName_UserIcon();
 			},1000);
+
+
+
 		}
 
 
@@ -79,8 +77,34 @@ $(function(){
 		Set_UserList(json_list);
 
 
-});
+	});
 
+	function GetUserIDfrom_accountsettings(){
+		client.get('account/settings', function(error, setting, response) {
+						login_userID=setting.screen_name;
+						console.log(login_userID);
+				});
+	}
+
+	function Get_UserName_UserIcon(){
+		client.get('users/show.json',{screen_name:login_userID},function(error,value,response){
+					login_userName=value.name;
+					login_userIcon=value.profile_image_url;
+					console.log("userName is",login_userName);
+					console.log("icon is",login_userIcon);
+					var fs = require('fs');
+					var text = login_userID+"\n"+login_userIcon+"\n"+login_userName+"\n";
+					fs.writeFile('User.txt', text);
+				});
+	}
+
+	function SplitUsertxt(){
+		var text = fs.readFileSync('User.txt', 'utf-8');
+		var Local_User_Data=new Array();
+		Local_User_Data=text.split("\n");
+
+		return Local_User_Data
+	}
 
 
 
@@ -115,6 +139,8 @@ $(function(){
 
 		}
 	}
+
+
 
 
 });

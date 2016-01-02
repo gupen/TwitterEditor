@@ -96,8 +96,8 @@ function Delete_Timeline(){
 //取得したjsonからTL情報を取り出して画面上に表示する
 function view_Timeline(tweet_json){
     Delete_Timeline();
-    for(var i=0;i<tweet_json.length;i++){
-        $("p.tweet").before("<div class=\"alert alert-info\" id='TL'><button class=\"close\" data-dismiss=\"alert\">&times;</button>"+"<img id=\"icon\" src="+tweet_json[i].user.profile_image_url+">"+tweet_json[i].user.name+":"+tweet_json[i].text+"</div>");
+    for(var i=tweet_json.length-1;i>0;i--){
+        $("p.tweet").after("<div class=\"alert alert-info\" id='TL'><button class=\"close\" data-dismiss=\"alert\">&times;</button>"+"<img id=\"icon\" src="+tweet_json[i].user.profile_image_url+">"+tweet_json[i].user.name+":"+tweet_json[i].text+"</div>");
         $('#icon').height(30).width(30);
     }
 

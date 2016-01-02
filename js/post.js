@@ -6,6 +6,8 @@ var Array_shinchoku = [];
 $(function(){
 
 
+
+
     //Tweetボタン
     var TweetButton = $('#TweetButton');
     TweetButton.click(function(){
